@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: lms_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: lms_db
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    container_name: lms_wordpress
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: root_password
+      WORDPRESS_DB_NAME: lms_db
+    volumes:
+      - ./wordpress/wp-content/themes/lms-theme:/var/www/html/wp-content/themes/lms-theme
+
+  node_app:
+    build: ./node-app
+    container_name: lms_node_api
+    ports:
+      - "3000:3000"
+    environment:
+      WP_API_URL: http://wordpress/wp-json
+    depends_on:
+      - wordpress
+
+volumes:
+  db_data:

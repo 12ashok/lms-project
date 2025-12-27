@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Custom LMS</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
+        .course-card { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Available Courses</h1>
+    <div id="course-container">Loading courses...</div>
+
+    <script>
+        async function loadCourses() {
+            const res = await fetch('/api/courses');
+            const courses = await res.json();
+            const container = document.getElementById('course-container');
+            container.innerHTML = courses.map(course => `
+                <div class="course-card">
+                    <h2>${course.title.rendered}</h2>
+                    <div>${course.excerpt.rendered}</div>
+                </div>
+            `).join('');
+        }
+        loadCourses();
+    </script>
+</body>
+</html>
