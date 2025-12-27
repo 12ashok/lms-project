@@ -28,7 +28,7 @@ services:
 
   node_app:
     build: ./node-app
-    container_name: lms_node_api
+    dockerfile: Dockerfile
     ports:
       - "3000:3000"
     environment:
