@@ -3,8 +3,11 @@ installation softwares
 1. java 
 2. docker 
 3. docker-compose
-4. node js 
-5. maria db
+4. node js
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+source ~/.bashrc
+nvm install --lts
+6. maria db
    https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-20-04
 
 commands 
