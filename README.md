@@ -4,10 +4,11 @@ installation softwares
 2. docker 
 3. docker-compose
 4. node js 
-5. maria db 
+5. maria db
+   https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-20-04
 
 commands 
-1  sudo apt-get update -y
+    1  sudo apt-get update -y
     2  docker --version
     3  sudo apt  install docker.io
     4  docker-compose --version
