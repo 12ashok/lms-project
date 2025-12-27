@@ -1,14 +1,13 @@
 FROM node:18-alpine
 WORKDIR /app
 
-# Copy package files first (better for caching)
+# Only copy package.json first
 COPY package.json ./
-# If you don't have a package-lock.json yet, remove the line below
-COPY package-lock.json* ./ 
 
+# Install dependencies
 RUN npm install
 
-# Copy everything else from the node-app folder
+# Now copy the rest of the files
 COPY . .
 
 EXPOSE 3000
